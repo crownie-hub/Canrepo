@@ -37,7 +37,7 @@ class Response_time:
             get_length_m = self.get_length_busy_period(p,B, new_length_m,j, t) #recursion
          #calls itself recursively to reach the base case and then terminates 
         except Exception:
-            get_length_m=0      # returns 0 if no solution  if found 
+            get_length_m=0      # returns 0 if no solution is found 
          
         return get_length_m
        
