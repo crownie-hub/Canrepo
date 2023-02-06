@@ -1,4 +1,4 @@
-def can_fd(d):
+def can_fd_data(d):
     return ( d if d <=  8 else
         12 if 8 < d <= 12 else
         16 if 12 < d <= 16 else

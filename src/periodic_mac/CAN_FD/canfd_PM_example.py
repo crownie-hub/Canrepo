@@ -1,12 +1,13 @@
-import imp
 import os
 import csv
 import math
 
-from classcanpmac import CAN_PMAC_RT
+from periodic_mac.can_pmac_rt import CAN_PMAC_RT
+#import utils.can_fd_padding
+import can_mac_rt 
 
 def read_file():
-    priority,period,TX,DLC = [],[],[],[]
+    priority,period,TX,size = [],[],[],[]
     bus_speed = 100
     tbit = 1 / float(bus_speed)
     len_message_frame=[]
@@ -20,8 +21,11 @@ def read_file():
             TX.append(round(float((55 + (10 * (int(row[1])))) * tbit),6))
             period.append(int(row[2]))
             priority.append(int((row[0]),16))
-            DLC.append(int(row[1]))
+            size.append(int(row[1]))
     
+    DLC = [utils.can_fd_padding.can_fd_data(i) for i in size]
+    print(DLC)
+    exit()
     full_frame = [math.floor(4/8) for i in range(len(DLC))]
     partial_frame = [math.ceil(4/8) - full_frame[i] for i in range(len(DLC))]
     modul = [4 %8 for i in range(len(DLC))]

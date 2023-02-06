@@ -1,6 +1,8 @@
 import random
 import math
-import libs.CAN_MAC_Response_time
+import sys
+
+import libs.can_mac_rt 
 
 def generate_data(bus_speed,data_size):
     #full cAN DLC = 8, A+F = 4
@@ -30,7 +32,7 @@ def rand_result(bus_speed,data_size):
 
     val1,val2,val3,val4,val5,val6,val7,val8,val9,val10= generate_data (bus_speed,data_size)
 
-    resp = libs.CAN_MAC_Response_time.Response_time(val1,val2,val3,val4,val5,val6,val7,val8,val9,val10)
+    resp = libs.can_mac_rt.Response_time(val1,val2,val3,val4,val5,val6,val7,val8,val9,val10)
 
     for p in range(len(resp.priority)):
         

@@ -3,7 +3,7 @@ import os
 import csv
 import math
 
-from classcanpmac import CAN_PMAC_RT
+from libs.can_pmac_rt import CAN_PMAC_RT
 
 def read_file():
     priority,period,TX,DLC = [],[],[],[]
