@@ -1,5 +1,6 @@
 import random
 import math
+from libs.can_pmac_res import pmac_result
 
 def generate_data():
     dtbit = 1/10000
@@ -18,6 +19,9 @@ def generate_data():
     cmax = [ 37 * tbit + ((129 + (8 * 2048)+ math.floor((9+ (8*2048))/10)) * dtbit) for i in range(len(DLC))]
     cmac =[ 37 * tbit + ((129 + (8 * modul[i])+ math.floor((9+ (8*modul[i]))/10)) * dtbit) for i in range(len(DLC))]   
     pmac_TX = [(full_frame[i])*cmax[i]  + (partial_frame[i]* cmac[i] ) for i in range(len(DLC))]
+    pmac_res = pmac_result(priority, period,TX,full_frame, partial_frame,DLC, pmac_TX,cmac,cmax,tbit)
+    
+    return pmac_res
         
 def xl_TX(payload, tbit, dtbit):
     # assuming base format
